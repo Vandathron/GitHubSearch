@@ -1,6 +1,6 @@
 <app-loader style="text-align: center;" *ngIf="usersIsLoading"></app-loader>
 <section class="github-users">
-    <div class="users" *ngFor="let gitHubUser of gitHubUsers.items | paginate: { itemsPerPage: 10, currentPage: p }" (click) = "navigateToProfile(gitHubUser)">
+    <div class="users" *ngFor="let gitHubUser of gitHubUsers.items | paginate: { itemsPerPage: 10, currentPage: index }" (click) = "navigateToProfile(gitHubUser)">
         <div class="user-picture">
             <img [src]="gitHubUser.avatar_url">
         </div>
@@ -9,4 +9,4 @@
         </div>
     </div>
 </section>
-<pagination-controls style="margin-bottom: 50px;" (pageChange)="p = $event"></pagination-controls>
+<pagination-controls style="margin-bottom: 50px;" (pageChange)="index = $event"></pagination-controls>

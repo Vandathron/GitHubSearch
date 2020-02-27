@@ -20,6 +20,8 @@ export class UsersComponent implements OnInit {
   ngOnInit() {
   }
 
+  index: number = 1;
+
   //User is gotten from the parent component(AppComponent)
   @Input('gitHubUsers') gitHubUsers: IGitHubUser;
 
