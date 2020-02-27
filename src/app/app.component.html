@@ -1,0 +1,10 @@
+<header>
+  <img src="../assets/logo.png" alt="" class="logo">
+  <p>GitHub Search</p>
+</header>
+<div class="search">
+  <input [formControl] = "userQuery" type="text" class="form-control" placeholder="Search users on github">
+</div>
+  <app-users [gitHubUsers] = "gitHubUsers" ></app-users>
+
+<router-outlet></router-outlet>

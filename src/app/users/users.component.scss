@@ -1,0 +1,62 @@
+
+
+
+.github-users{
+    padding-right: 50px;
+    padding-left: 50px;
+    margin-top: 20px;
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 500px);
+    grid-gap: 10px 100px;
+
+    .users{
+        display: grid;
+        grid-template-columns: .5fr 1fr;
+        max-width: 500px;
+        border-radius: 10px;
+        margin-bottom: 50px;
+        padding: 10px;
+        box-shadow: 1px 3px 10px black;
+        .user-picture{
+            img{
+                width: 200px;
+                height: 200px;
+            }
+        }
+        .user-info{
+            .username{
+                font-size: 22px;
+            }
+        }
+        
+    }
+    .users:hover{
+        cursor: pointer;
+    }
+
+}
+
+@media only screen and (max-width: 1230px) {
+  .github-users {
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px 50px;
+  }
+}
+
+  @media only screen and (max-width: 1045px) {
+  .github-users {
+    grid-template-columns: 1fr;
+    grid-gap: 10px 50px;
+  }
+}
+
+  @media only screen and (max-width: 550px) {
+    .github-users{
+        .users {
+            grid-template-columns: 1fr;
+            grid-gap: 10px 50px;
+        }
+    }
+  
+}
