@@ -7,7 +7,6 @@ import { Observable, Subject } from 'rxjs';
 })
 export class SearchService {
 
-  loading = new Subject<boolean>();
   
   constructor(
     private httpClient: HttpClient
@@ -15,23 +14,22 @@ export class SearchService {
 
    }
 
-   setLoadingState(state:boolean = false){
-     console.log("Called ccc");
+  setLoadingState(state:boolean = false){
     this.loading.next(state);
-   }
+  }
 
   getLoadingState = (): Observable<boolean> => this.loading;
 
-   public getGitHubUsersByName(name: string): Observable<IGitHubUser>{
-    return this.httpClient.get<IGitHubUser>(this.baseSearchAPI, {params: {q: name}})
-   }
-
-  private readonly baseSearchAPI: string = "https://api.github.com/search/users";
-
-  public httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      
-    })
+  public getGitHubUsersByName(name: string): Observable<IGitHubUser>{
+    return this.httpClient.get<IGitHubUser>(this.baseSearchAPI +"search/users", {params: {q: name}})
   }
+
+  public getGitGuhUserByName(name: string): Observable<any>{
+    return this.httpClient.get<any>(this.baseSearchAPI+`users/${name}`);
+  }
+
+  private loading = new Subject<boolean>();
+
+  private readonly baseSearchAPI: string = "https://api.github.com/";
+
 }

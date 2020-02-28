@@ -1,11 +1,16 @@
 <app-loader style="text-align: center;" *ngIf="usersIsLoading"></app-loader>
 <section class="github-users">
-    <div class="users" *ngFor="let gitHubUser of gitHubUsers.items | paginate: { itemsPerPage: 10, currentPage: index }" (click) = "navigateToProfile(gitHubUser)">
+    <div class="users" *ngFor="let gitHubUser of gitHubUsers.items | paginate: { itemsPerPage: 10, currentPage: index } let i = index">
         <div class="user-picture">
             <img [src]="gitHubUser.avatar_url">
         </div>
         <div class="user-info">
-            <a class="username"> {{gitHubUser.login}} </a>
+           <a class="additional-detail" style="color: blue;" (click) = "getUserInfoByName(gitHubUser.login, i)">More details </a> | <a href='https://github.com/{{gitHubUser.login}}' target="_blank">View on github</a>
+            <p class="username">{{gitHubUser.login}}</p>
+            <div class="additional-info" *ngIf="gitHubUser.loaded">
+                <p>{{gitHubUser.bio}}</p>
+                <a>Followers: {{gitHubUser.followers}}  </a>  <a>Following: {{gitHubUser.following}}</a>
+            </div>
         </div>
     </div>
 </section>

@@ -20,4 +20,8 @@ interface IGitHubUserItem{
     received_events_url: string;
     type: string;
     score: number;
+    followers: number;
+    following: number;
+    bio: string
+    loaded: boolean;
 }

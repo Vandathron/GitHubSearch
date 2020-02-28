@@ -21,7 +21,6 @@ export class AppComponent implements OnInit{
   constructor(
     private searchService: SearchService,
   ){
-    // console.log("Called");
   }
 
   ngOnInit(){
@@ -37,6 +36,8 @@ export class AppComponent implements OnInit{
         this.assignGithubUsers(users);
         this.searchService.setLoadingState(false); // turn off loader after data has been received from the API
       });
+
+      else this.searchService.setLoadingState(false);
     })
   }
 
