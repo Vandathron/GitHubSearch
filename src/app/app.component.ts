@@ -11,7 +11,7 @@ import { SearchService } from './services/search.service';
 export class AppComponent implements OnInit{
 
   userQuery: FormControl = new FormControl();
-
+  error: boolean = false;
   gitHubUsers: IGitHubUser = {
     total_count: 0,
     incomplete_results: false,
@@ -25,9 +25,10 @@ export class AppComponent implements OnInit{
 
   ngOnInit(){
     this.userQuery.valueChanges.pipe(
-      debounceTime(2000), //request is sent after 2 seconds to reduce multiple calls due to user input delay
+      debounceTime(1500), //request is sent after 1.5 seconds to reduce multiple calls due to user input delay
       distinctUntilChanged()
     ).subscribe((query:string) => {
+      this.error = false;
       this.resetUsers();// re-iniliazed for every new request
       this.searchService.setLoadingState(true); // activate loader while yet to receive response
       if (query.length > 0)
@@ -35,10 +36,12 @@ export class AppComponent implements OnInit{
       .subscribe(users => {
         this.assignGithubUsers(users);
         this.searchService.setLoadingState(false); // turn off loader after data has been received from the API
+      }, e => {
+        this.error = true;
+        this.searchService.setLoadingState(false); // turn off loader after data has been received from the API
       });
-
       else this.searchService.setLoadingState(false);
-    })
+    });
   }
 
   public assignGithubUsers(users: IGitHubUser): void {

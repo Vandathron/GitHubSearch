@@ -1,3 +1,4 @@
+<p>User count: {{gitHubUsers.items.length}}</p>
 <app-loader style="text-align: center;" *ngIf="usersIsLoading"></app-loader>
 <section class="github-users">
     <div class="users" *ngFor="let gitHubUser of gitHubUsers.items | paginate: { itemsPerPage: 10, currentPage: index } let i = index">

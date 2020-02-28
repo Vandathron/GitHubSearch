@@ -5,6 +5,7 @@
 <div class="search">
   <input [formControl] = "userQuery" type="text" class="form-control" placeholder="Search users on github">
 </div>
+<p class="error-message" *ngIf="error"> An error occured</p>
   <app-users [gitHubUsers] = "gitHubUsers" ></app-users>
 
 <router-outlet></router-outlet>
